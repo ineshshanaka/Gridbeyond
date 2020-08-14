@@ -12,93 +12,40 @@ namespace Gridbeyond
 {
     public partial class _Default : Page
     {
-        SqlConnection con;
-        string sqlconn;
-    
-        private void connection()
-        {
-            sqlconn = System.Configuration.ConfigurationManager.ConnectionStrings["SqlComunication"].ConnectionString;
-            con = new SqlConnection(sqlconn);
-
-        }
+     
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        protected void Button1_Click_FileUpload(object sender, EventArgs e)
+        protected void Buttonupload_Click_FileUpload(object sender, EventArgs e)
         {
-            //Creating object of datatable  
-            DataTable tblcsv = new DataTable();
-            //creating columns  
-            tblcsv.Columns.Add("Date");
-            tblcsv.Columns.Add("Time");
-            tblcsv.Columns.Add("Price");
-
+            ////Creating object of result datatable  
+            DataTable tblcsvResult = new DataTable();
+      
             //getting full file path of Uploaded file  
-            string CSVFilePath = Path.GetFullPath(FileUpload1.PostedFile.FileName);
+            string CSVFilePath = Path.GetFullPath(FileUploadCSV.PostedFile.FileName);
             //Reading All text  
             string ReadCSV = File.ReadAllText(CSVFilePath);
             //spliting row after new line  
 
-            int DataRowCount = 0;
-            foreach (string csvRow in ReadCSV.Split('\n'))
-            {
-                if (!string.IsNullOrEmpty(csvRow))
-                {                                  
-                    int count = 0;
+            ReadFile RF = new ReadFile();
+            tblcsvResult = RF.ReadFileCSV(ReadCSV);
 
-                    if (DataRowCount != 0)
-                    {
-                        //Adding each row into datatable  
-                        tblcsv.Rows.Add();
 
-                        foreach (string FileRec in csvRow.Split(','))
-                        {
+            InsertDatabase IR = new InsertDatabase();
+            bool success  = IR.InsertCSVRecords(tblcsvResult);
 
-                            if (count == 0)
-                            {
-                                foreach (string FileRecDate in FileRec.Split(' '))
-                                {
-                                    tblcsv.Rows[tblcsv.Rows.Count - 1][count] = FileRecDate;                                   
-                                    count++;
-                                }  
-                                
-                                if (count == 1)
-                                {
-                                    tblcsv.Rows[tblcsv.Rows.Count - 1][count] = "00:00";
-                                    count++;
-                                }
-                            }
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script language='javascript'>");
+            sb.Append(@"$('#MessageModal').modal('show');");
+            sb.Append(@"</script>");
 
-                            count = 2;
-                            tblcsv.Rows[tblcsv.Rows.Count - 1][count] = FileRec;
+            if (success)
+                lblMessage.Text = "Your Data Successfully Uploaded to the Database.";
+            else
+                lblMessage.Text = "Error in uploading.";
 
-                            count++;                           
-                        }
-                    }
-                    DataRowCount++;
-                }
-            }
-            //Calling insert Functions  
-            InsertCSVRecords(tblcsv);
-        }
-        //Function to Insert Records  
-        private void InsertCSVRecords(DataTable csvdt)
-        {
-            connection();
-            //creating object of SqlBulkCopy    
-            SqlBulkCopy objbulk = new SqlBulkCopy(con);
-            //assigning Destination table name    
-            objbulk.DestinationTableName = "Market_Price_EX";
-            //Mapping Table column    
-            objbulk.ColumnMappings.Add("Date", "Date");
-            objbulk.ColumnMappings.Add("Time", "Time");
-            objbulk.ColumnMappings.Add("Price", "Price");
-
-            //inserting Datatable Records to DataBase    
-            con.Open();
-            objbulk.WriteToServer(csvdt);
-            con.Close();
+            ClientScript.RegisterStartupScript(this.GetType(), "JSScript", sb.ToString());
         }
     }
 }

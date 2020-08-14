@@ -12,14 +12,32 @@
                    <h2>Select File</h2>
                 </td>    
                 <td style="width:30%">    
-                    <asp:FileUpload ID="FileUpload1" runat="server" class="btn btn-primary btn-lg" />    
+                    <asp:FileUpload ID="FileUploadCSV" runat="server" class="btn btn-primary btn-lg" /> 
+                     <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="* Required Field" ControlToValidate="FileUploadCSV">
+                    </asp:RequiredFieldValidator>
                 </td>    
                 <td>    
                 </td>    
                 <td style="width:40%">    
-                    <asp:Button ID="Button1" class="btn btn-primary btn-lg" runat="server" Text="Upload" OnClick="Button1_Click_FileUpload" />    
+                    <asp:Button ID="ButtonUpload" class="btn btn-primary btn-lg" runat="server" Text="Upload" OnClick="Buttonupload_Click_FileUpload" />    
                 </td>    
             </tr>    
         </table>
     </div>
+
+    <div id="MessageModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">						
+				<h4 class="modal-title">Attention !</h4>	
+			</div>
+			<div class="modal-body">
+                <asp:Label ID ="lblMessage" Font-Size="Large" class="label label-default" runat ="server"></asp:Label>		
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
 </asp:Content>

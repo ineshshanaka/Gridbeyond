@@ -37,12 +37,17 @@
       color:darkgreen;
     }
     </style>
+
+    <div>
+        <br /><br /><asp:Label ID ="LabelNoData" Width="300px" Font-Size="X-Large"  CssClass="col-md-2 control-label"  runat ="server"></asp:Label><br /><br />
+    </div>
+
     <div class="short-div"> 
       <div class="row">
         <div class="column" style="background-color:white;">
     
             <asp:Label ID ="LabelMAX" Width ="150px" Font-Size="Medium" Text="Max Price" CssClass="col-md-2 control-label"  runat ="server"></asp:Label>	
-            <asp:TextBox ID="TextMAX" Width="100px"  CssClass="form-control" runat="server"></asp:TextBox><br /><br />
+            <asp:TextBox ID="TextBoxMAX" Width="100px"  CssClass="form-control" runat="server"></asp:TextBox><br /><br />
 
         </div>
 
@@ -74,12 +79,12 @@
     </div>
 
     <div>
-        <asp:Chart ID="Chart1" runat="server" Width="1200" Height ="600">  
+        <asp:Chart ID="ChartAverageDaily" runat="server" Width="1200" Height ="600">  
             <Titles>  
-                <asp:Title Text="Daily Price Average"></asp:Title>  
+                <asp:Title></asp:Title>  
             </Titles>  
             <Series>  
-                <asp:Series Name="Series1" ChartArea="ChartArea1"></asp:Series>  
+                <asp:Series Name="SeriesAverage" ChartArea="ChartArea1"></asp:Series>  
             </Series>  
             <ChartAreas>   
                 <asp:ChartArea Name="ChartArea1" BackGradientStyle="TopBottom" Area3DStyle-Enable3D="True">  
@@ -95,12 +100,12 @@
         <asp:Label ID ="lblMessage" Font-Size="Large" Text="Select Date" CssClass="col-md-2 control-label"  runat ="server"></asp:Label>	
         <asp:DropDownList ID="ddlDate" Width="300px" AutoPostBack="true"  CssClass="form-control" runat="server"  OnSelectedIndexChanged="ddlDate_SelectedIndexChanged" ></asp:DropDownList>
        
-        <asp:Chart ID="Chart2" runat="server" Width="1200" Height ="600">  
+        <asp:Chart ID="ChartDailyView" runat="server" Width="1200" Height ="600">  
             <Titles>  
                 <asp:Title Text=""></asp:Title>  
             </Titles>  
             <Series>  
-                <asp:Series Name="Series1" ChartArea="ChartArea1"></asp:Series>  
+                <asp:Series Name="SeriesDaily" ChartArea="ChartArea1"></asp:Series>  
             </Series>  
             <ChartAreas>   
                 <asp:ChartArea Name="ChartArea1" BackGradientStyle="TopBottom" Area3DStyle-Enable3D="True">  

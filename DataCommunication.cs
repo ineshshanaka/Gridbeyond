@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Gridbeyond
 {
-    public class InsertDatabase
+    public class DataCommunication
     {
         SqlConnection con;
         string sqlconn;
@@ -47,15 +47,5 @@ namespace Gridbeyond
             return success;
         }
 
-        public SqlDataReader GetdataFromDatabase(string query)
-        {
-            connection();
-            SqlCommand cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.Text;
-            con.Open();
-            SqlDataReader rdr = cmd.ExecuteReader();
-            con.Close();
-            return rdr;
-        }
     }
 }

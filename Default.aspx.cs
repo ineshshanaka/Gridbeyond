@@ -32,7 +32,7 @@ namespace Gridbeyond
             tblcsvResult = RF.ReadFileCSV(ReadCSV);
 
 
-            InsertDatabase IR = new InsertDatabase();
+            DataCommunication IR = new DataCommunication();
             bool success  = IR.InsertCSVRecords(tblcsvResult);
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();

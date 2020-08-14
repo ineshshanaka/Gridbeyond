@@ -15,6 +15,15 @@ namespace Gridbeyond
     {
 
         /// <summary>
+        /// LabelNoData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelNoData;
+
+        /// <summary>
         /// LabelMAX control.
         /// </summary>
         /// <remarks>
@@ -24,13 +33,13 @@ namespace Gridbeyond
         protected global::System.Web.UI.WebControls.Label LabelMAX;
 
         /// <summary>
-        /// TextMAX control.
+        /// TextBoxMAX control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextMAX;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxMAX;
 
         /// <summary>
         /// LabelMIN control.
@@ -87,13 +96,13 @@ namespace Gridbeyond
         protected global::System.Web.UI.WebControls.TextBox TextBoxMaxValuTime;
 
         /// <summary>
-        /// Chart1 control.
+        /// ChartAverageDaily control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart ChartAverageDaily;
 
         /// <summary>
         /// lblMessage control.
@@ -114,12 +123,12 @@ namespace Gridbeyond
         protected global::System.Web.UI.WebControls.DropDownList ddlDate;
 
         /// <summary>
-        /// Chart2 control.
+        /// ChartDailyView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart2;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart ChartDailyView;
     }
 }
